@@ -1,0 +1,30 @@
+<form id="loginForm">
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+</form>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const body = {
+      username: formData.get('username'),
+      password: formData.get('password')
+    };
+
+    const res = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+      window.location.href = 'index.html';
+    } else {
+      alert(data.error || 'Login failed');
+    }
+  });
+</script>

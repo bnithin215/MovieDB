@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Database</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1>Movie Database</h1>
+
+  <!-- Signup Form -->
+  <div id="signupForm">
+    <h2>Signup</h2>
+    <input type="text" id="signupUsername" placeholder="Username" required />
+    <input type="email" id="signupEmail" placeholder="Email" required />
+    <input type="password" id="signupPassword" placeholder="Password" required />
+    <button id="signupBtn">Signup</button>
+    <p id="signupMsg"></p>
+  </div>
+
+  <!-- Login Form -->
+  <div id="loginForm">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+
+  <!-- Logout Button -->
+  <button id="logoutBtn" style="display:none;">Logout</button>
+
+  <!-- Movie Form -->
+  <form id="movieForm" style="display:none;">
+    <input name="title" placeholder="Movie Title" required />
+
+    <select name="genre" required>
+      <option value="">Select Genre</option>
+      <option value="Action">Action</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Rom-Com">Rom-Com</option>
+      <option value="Drama">Drama</option>
+      <option value="Horror">Horror</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Fantasy">Fantasy</option>
+    </select>
+
+    <input name="actor" placeholder="Lead Actor" required />
+
+    <div class="stars">
+      <span data-star="1">★</span>
+      <span data-star="2">★</span>
+      <span data-star="3">★</span>
+      <span data-star="4">★</span>
+      <span data-star="5">★</span>
+    </div>
+    <input type="hidden" name="rating" id="ratingInput" required />
+
+    <button type="submit">Add Movie</button>
+  </form>
+
+  <ul id="movieList"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
