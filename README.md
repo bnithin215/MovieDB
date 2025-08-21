@@ -30,3 +30,28 @@ Built with **Node.js, Express.js, MongoDB (Mongoose)** on the backend, and **HTM
 ---
 
 ## 📂 Project Structure
+MovieDB/
+├── backend/ # Express.js + MongoDB server
+│ ├── models/ # Mongoose schemas
+│ ├── routes/ # API routes
+│ └── server.js # App entry point
+│
+├── frontend/ # HTML, CSS, JavaScript
+│ ├── index.html
+│ ├── styles.css
+│ └── script.js
+│
+├── package.json
+└── README.md
+
+
+---
+
+## ⚡ Setup & Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bnithin215/MovieDB.git
+   cd MovieDB
+2.Install dependencies:
+npm install
