@@ -1,31 +1,93 @@
 const express = require('express');
 const Movie = require('../models/Movie');
-const jwt = require('jsonwebtoken');
+const auth = require('../Middleware/authMiddleware');
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET;
 
-function authMiddleware(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) return res.status(401).json({ error: 'No token' });
+// Get all movies (protected route)
+router.get('/', auth, async (req, res) => {
   try {
-    const user = jwt.verify(token, JWT_SECRET);
-    req.user = user;
-    next();
-  } catch {
-    res.status(401).json({ error: 'Invalid token' });
+    const movies = await Movie.find().sort({ createdAt: -1 });
+    res.json(movies);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    res.status(500).json({ error: 'Failed to fetch movies' });
   }
-}
-
-router.get('/', authMiddleware, async (req, res) => {
-  const movies = await Movie.find();
-  res.json(movies);
 });
 
-router.post('/', authMiddleware, async (req, res) => {
-  const { title, genre } = req.body;
-  const movie = new Movie({ title, genre });
-  await movie.save();
-  res.status(201).json(movie);
+// Create a new movie (protected route)
+router.post('/', auth, async (req, res) => {
+  try {
+    const { title, genre, actor, rating, director, cast, poster } = req.body;
+
+    if (!title || !genre) {
+      return res.status(400).json({ error: 'Title and genre are required' });
+    }
+
+    const movie = new Movie({
+      title,
+      genre,
+      actor,
+      rating: rating ? Number(rating) : undefined,
+      director,
+      cast,
+      poster,
+      createdBy: req.user.userId
+    });
+
+    await movie.save();
+    res.status(201).json(movie);
+  } catch (error) {
+    console.error('Error creating movie:', error);
+    res.status(500).json({ error: 'Failed to create movie' });
+  }
+});
+
+// Get a specific movie by ID (protected route)
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    if (!movie) {
+      return res.status(404).json({ error: 'Movie not found' });
+    }
+    res.json(movie);
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+    res.status(500).json({ error: 'Failed to fetch movie' });
+  }
+});
+
+// Update a movie (protected route)
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true, runValidators: true }
+    );
+
+    if (!movie) {
+      return res.status(404).json({ error: 'Movie not found' });
+    }
+
+    res.json(movie);
+  } catch (error) {
+    console.error('Error updating movie:', error);
+    res.status(500).json({ error: 'Failed to update movie' });
+  }
+});
+
+// Delete a movie (protected route)
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    if (!movie) {
+      return res.status(404).json({ error: 'Movie not found' });
+    }
+    res.json({ message: 'Movie deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting movie:', error);
+    res.status(500).json({ error: 'Failed to delete movie' });
+  }
 });
 
 module.exports = router;

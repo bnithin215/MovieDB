@@ -3,67 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Movie Database</title>
+  <title>Movie Database - Your Personal Movie Collection</title>
   <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Manage your personal movie collection with ratings and reviews">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 </head>
 <body>
+<!-- Navigation -->
+<nav class="navbar" id="mainNav" style="display: none;">
+  <div class="nav-container">
+    <h1 class="nav-title">🎬 Movie Database</h1>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Search Movies</a>
+      <a href="index.html" class="nav-link active">Add Movies</a>
+      <button id="navLogoutBtn" class="logout-btn">Logout</button>
+    </div>
+  </div>
+</nav>
 
-  <h1>Movie Database</h1>
+<h1>🎬 Movie Database</h1>
 
+<!-- Authentication Section -->
+<div id="authSection">
   <!-- Signup Form -->
   <div id="signupForm">
-    <h2>Signup</h2>
-    <input type="text" id="signupUsername" placeholder="Username" required />
-    <input type="email" id="signupEmail" placeholder="Email" required />
-    <input type="password" id="signupPassword" placeholder="Password" required />
-    <button id="signupBtn">Signup</button>
+    <h2>Create Account</h2>
+    <input type="text" id="signupUsername" placeholder="Choose a username" required />
+    <input type="email" id="signupEmail" placeholder="Enter your email" required />
+    <input type="password" id="signupPassword" placeholder="Create a password" required />
+    <button id="signupBtn">Sign Up</button>
     <p id="signupMsg"></p>
   </div>
 
   <!-- Login Form -->
   <div id="loginForm">
-    <h2>Login</h2>
-    <input type="email" id="loginEmail" placeholder="Email" required />
-    <input type="password" id="loginPassword" placeholder="Password" required />
-    <button id="loginBtn">Login</button>
+    <h2>Welcome Back</h2>
+    <input type="email" id="loginEmail" placeholder="Enter your email" required />
+    <input type="password" id="loginPassword" placeholder="Enter your password" required />
+    <button id="loginBtn">Log In</button>
     <p id="loginMsg"></p>
   </div>
+</div>
 
-  <!-- Logout Button -->
-  <button id="logoutBtn" style="display:none;">Logout</button>
+<!-- Logout Button -->
+<button id="logoutBtn" style="display:none;">Logout</button>
 
+<!-- Movie Management Section -->
+<div id="movieSection" style="display:none;">
   <!-- Movie Form -->
-  <form id="movieForm" style="display:none;">
+  <form id="movieForm">
     <input name="title" placeholder="Movie Title" required />
 
     <select name="genre" required>
       <option value="">Select Genre</option>
       <option value="Action">Action</option>
       <option value="Comedy">Comedy</option>
-      <option value="Rom-Com">Rom-Com</option>
+      <option value="Rom-Com">Romantic Comedy</option>
       <option value="Drama">Drama</option>
       <option value="Horror">Horror</option>
       <option value="Thriller">Thriller</option>
-      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Sci-Fi">Science Fiction</option>
       <option value="Fantasy">Fantasy</option>
     </select>
 
-    <input name="actor" placeholder="Lead Actor" required />
+    <input name="actor" placeholder="Lead Actor/Actress" />
+    <input name="director" placeholder="Director" />
+    <input name="cast" placeholder="Main Cast (comma separated)" />
 
-    <div class="stars">
-      <span data-star="1">★</span>
-      <span data-star="2">★</span>
-      <span data-star="3">★</span>
-      <span data-star="4">★</span>
-      <span data-star="5">★</span>
+    <div class="rating-section">
+      <label for="ratingInput">Rate this movie:</label>
+      <div class="stars">
+        <span data-star="1">⭐</span>
+        <span data-star="2">⭐</span>
+        <span data-star="3">⭐</span>
+        <span data-star="4">⭐</span>
+        <span data-star="5">⭐</span>
+      </div>
+      <input type="hidden" name="rating" id="ratingInput" required />
     </div>
-    <input type="hidden" name="rating" id="ratingInput" required />
 
-    <button type="submit">Add Movie</button>
+    <button type="submit">Add Movie to Collection</button>
   </form>
 
-  <ul id="movieList"></ul>
+  <!-- Movie Statistics -->
+  <div id="movieStats" class="text-center mb-20">
+    <h3>Your Collection</h3>
+    <p id="statsText">No movies in your collection yet</p>
+  </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- Movie List -->
+<ul id="movieList"></ul>
+
+<!-- Loading Indicator -->
+<div id="loading" class="text-center" style="display:none;">
+  <div class="loading"></div>
+  <p>Loading your movies...</p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Search Movies - Movie Database</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Search and discover movies in your collection">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="nav-title">🎬 Movie Database</h1>
+        <div class="nav-links">
+            <a href="search.html" class="nav-link active">Search</a>
+            <a href="index.html" class="nav-link">Add Movies</a>
+            <button id="navLogoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Search Header -->
+<div class="search-header">
+    <h1>🔍 Search Movies</h1>
+    <p>Search your collection or discover new movies from OMDB database</p>
+</div>
+
+<!-- Search Tabs -->
+<div class="search-tabs">
+    <button id="myCollectionTab" class="tab-btn active">My Collection</button>
+    <button id="omdbSearchTab" class="tab-btn">Discover Movies (OMDB)</button>
+</div>
+
+<!-- Advanced Search Form -->
+<div class="search-container">
+    <div class="search-form">
+        <h2>Advanced Search</h2>
+
+        <!-- Main Search -->
+        <div class="search-row">
+            <div class="search-field full-width">
+                <label for="mainSearch">Search Everything</label>
+                <input type="text" id="mainSearch" placeholder="Search titles, actors, directors, cast..." />
+                <small>Search across all movie fields at once</small>
+            </div>
+        </div>
+
+        <!-- Specific Search Fields -->
+        <div class="search-row">
+            <div class="search-field">
+                <label for="titleSearch">Movie Title</label>
+                <input type="text" id="titleSearch" placeholder="e.g., Avengers, Inception..." />
+            </div>
+            <div class="search-field">
+                <label for="actorSearch">Actor/Actress</label>
+                <input type="text" id="actorSearch" placeholder="e.g., Robert Downey Jr..." />
+            </div>
+        </div>
+
+        <div class="search-row">
+            <div class="search-field">
+                <label for="directorSearch">Director</label>
+                <input type="text" id="directorSearch" placeholder="e.g., Christopher Nolan..." />
+            </div>
+            <div class="search-field">
+                <label for="castSearch">Cast Members</label>
+                <input type="text" id="castSearch" placeholder="e.g., Tom Hanks, Meryl Streep..." />
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="search-row">
+            <div class="search-field">
+                <label for="genreSearch">Genre</label>
+                <select id="genreSearch">
+                    <option value="">Any Genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Rom-Com">Romantic Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Sci-Fi">Science Fiction</option>
+                    <option value="Fantasy">Fantasy</option>
+                </select>
+            </div>
+            <div class="search-field">
+                <label for="ratingSearch">Minimum Rating</label>
+                <select id="ratingSearch">
+                    <option value="">Any Rating</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (5 stars only)</option>
+                    <option value="4">⭐⭐⭐⭐ (4+ stars)</option>
+                    <option value="3">⭐⭐⭐ (3+ stars)</option>
+                    <option value="2">⭐⭐ (2+ stars)</option>
+                    <option value="1">⭐ (1+ stars)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Search Actions -->
+        <div class="search-actions">
+            <button id="searchBtn" class="search-btn primary">🔍 Search Movies</button>
+            <button id="clearSearchBtn" class="search-btn secondary">Clear All</button>
+            <button id="showAllBtn" class="search-btn secondary">Show All Movies</button>
+        </div>
+    </div>
+
+    <!-- Search Statistics -->
+    <div class="search-stats" id="searchStats" style="display: none;">
+        <div class="stats-content">
+            <h3>Search Results</h3>
+            <div id="searchStatsText">Ready to search...</div>
+            <div class="quick-filters">
+                <span class="filter-label">Quick filters:</span>
+                <button class="quick-filter" data-genre="Action">Action</button>
+                <button class="quick-filter" data-genre="Comedy">Comedy</button>
+                <button class="quick-filter" data-genre="Drama">Drama</button>
+                <button class="quick-filter" data-rating="5">5 Star Movies</button>
+                <button class="quick-filter" data-rating="4">4+ Stars</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sort Options -->
+<div class="sort-container" id="sortContainer" style="display: none;">
+    <div class="sort-content">
+        <label for="sortResults">Sort Results:</label>
+        <select id="sortResults">
+            <option value="relevance">Most Relevant</option>
+            <option value="newest">Newest Added</option>
+            <option value="oldest">Oldest Added</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+            <option value="rating-high">Highest Rated</option>
+            <option value="rating-low">Lowest Rated</option>
+        </select>
+
+        <div class="view-options">
+            <button id="gridViewBtn" class="view-btn active">Grid View</button>
+            <button id="listViewBtn" class="view-btn">List View</button>
+        </div>
+    </div>
+</div>
+
+<!-- Search Results -->
+<div class="results-container">
+    <div id="searchResults" class="search-results">
+        <div class="welcome-message">
+            <h2>🎬 Welcome to Advanced Search</h2>
+            <p>Use the search form above to find specific movies in your collection.</p>
+            <p>You can search by title, actor, director, genre, rating, or any combination!</p>
+            <div class="search-tips">
+                <h3>💡 Search Tips:</h3>
+                <ul>
+                    <li><strong>Quick Search:</strong> Use the main search box to search everything at once</li>
+                    <li><strong>Specific Search:</strong> Use individual fields for precise results</li>
+                    <li><strong>Combine Filters:</strong> Mix text search with genre and rating filters</li>
+                    <li><strong>Quick Filters:</strong> Click the quick filter buttons for instant results</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Indicator -->
+<div id="searchLoading" class="loading-container" style="display: none;">
+    <div class="loading"></div>
+    <p>Searching your movies...</p>
+</div>
+
+<!-- No Results Message -->
+<div id="noResults" class="no-results-message" style="display: none;">
+    <h2>🔍 No Movies Found</h2>
+    <p>No movies match your search criteria.</p>
+    <div class="suggestions">
+        <h3>Try these suggestions:</h3>
+        <ul>
+            <li>Check your spelling</li>
+            <li>Use fewer search terms</li>
+            <li>Try searching with different keywords</li>
+            <li>Clear filters and search again</li>
+        </ul>
+    </div>
+</div>
+
+<script src="search.js"></script>
+</body>
+</html>

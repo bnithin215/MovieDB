@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/package.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/package.json" />
+              <option name="originalContent" value="{&#10;  &quot;name&quot;: &quot;movie-database-backend&quot;,&#10;  &quot;version&quot;: &quot;1.0.0&quot;,&#10;  &quot;description&quot;: &quot;Backend API for Movie Database application&quot;,&#10;  &quot;main&quot;: &quot;index.js&quot;,&#10;  &quot;scripts&quot;: {&#10;    &quot;start&quot;: &quot;node index.js&quot;,&#10;    &quot;dev&quot;: &quot;nodemon index.js&quot;,&#10;    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;&#10;  },&#10;  &quot;keywords&quot;: [&#10;    &quot;movie&quot;,&#10;    &quot;database&quot;,&#10;    &quot;api&quot;,&#10;    &quot;express&quot;,&#10;    &quot;mongodb&quot;&#10;  ],&#10;  &quot;author&quot;: &quot;Your Name&quot;,&#10;  &quot;license&quot;: &quot;MIT&quot;,&#10;  &quot;dependencies&quot;: {&#10;    &quot;express&quot;: &quot;^4.18.2&quot;,&#10;    &quot;mongoose&quot;: &quot;^7.5.0&quot;,&#10;    &quot;cors&quot;: &quot;^2.8.5&quot;,&#10;    &quot;bcrypt&quot;: &quot;^5.1.1&quot;,&#10;    &quot;jsonwebtoken&quot;: &quot;^9.0.2&quot;,&#10;    &quot;dotenv&quot;: &quot;^16.3.1&quot;&#10;  },&#10;  &quot;devDependencies&quot;: {&#10;    &quot;nodemon&quot;: &quot;^3.0.1&quot;&#10;  },&#10;  &quot;engines&quot;: {&#10;    &quot;node&quot;: &quot;&gt;=14.0.0&quot;&#10;  }&#10;}" />
+              <option name="updatedContent" value="{&#10;  &quot;name&quot;: &quot;movie-database-backend&quot;,&#10;  &quot;version&quot;: &quot;1.0.0&quot;,&#10;  &quot;description&quot;: &quot;Backend API for Movie Database application&quot;,&#10;  &quot;main&quot;: &quot;index.js&quot;,&#10;  &quot;scripts&quot;: {&#10;    &quot;start&quot;: &quot;node Backend/index.js&quot;,&#10;    &quot;dev&quot;: &quot;nodemon Backend/index.js&quot;,&#10;    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;&#10;  },&#10;  &quot;keywords&quot;: [&#10;    &quot;movie&quot;,&#10;    &quot;database&quot;,&#10;    &quot;api&quot;,&#10;    &quot;express&quot;,&#10;    &quot;mongodb&quot;&#10;  ],&#10;  &quot;author&quot;: &quot;Your Name&quot;,&#10;  &quot;license&quot;: &quot;MIT&quot;,&#10;  &quot;dependencies&quot;: {&#10;    &quot;express&quot;: &quot;^4.18.2&quot;,&#10;    &quot;mongoose&quot;: &quot;^7.5.0&quot;,&#10;    &quot;cors&quot;: &quot;^2.8.5&quot;,&#10;    &quot;bcrypt&quot;: &quot;^5.1.1&quot;,&#10;    &quot;jsonwebtoken&quot;: &quot;^9.0.2&quot;,&#10;    &quot;dotenv&quot;: &quot;^16.3.1&quot;&#10;  },&#10;  &quot;devDependencies&quot;: {&#10;    &quot;nodemon&quot;: &quot;^3.0.1&quot;&#10;  },&#10;  &quot;engines&quot;: {&#10;    &quot;node&quot;: &quot;&gt;=14.0.0&quot;&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
